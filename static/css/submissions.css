@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+body {
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    background: linear-gradient(135deg, #e3f0ff 0%, #f9f9ff 100%);
+    min-height: 100vh;
+    color: #22223b;
+    padding-top: 60px;
+}
+
+.navbar {
+    background: linear-gradient(90deg, #3a86ff 0%, #4361ee 100%);
+    box-shadow: 0 2px 8px rgba(58, 134, 255, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: #fff !important;
+}
+
+.navbar .btn-outline-light {
+    border-radius: 25px;
+    border-width: 2px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.navbar .btn-outline-light:hover {
+    background: #fff;
+    color: #3a86ff;
+}
+
+.container {
+    max-width: 1100px;
+    margin-top: 40px;
+    animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #3a86ff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    animation: fadeInDown 0.7s;
+}
+
+.table {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(67, 97, 238, 0.08), 0 1.5px 6px rgba(58, 134, 255, 0.06);
+    overflow: hidden;
+    margin-top: 2rem;
+    animation: fadeInUp 1s;
+}
+
+.table thead th {
+    background: linear-gradient(90deg, #3a86ff 0%, #4361ee 100%);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.table tbody tr:hover {
+    background: #e0e7ff;
+    box-shadow: 0 2px 12px rgba(67, 97, 238, 0.08);
+}
+
+.table td, .table th {
+    vertical-align: middle !important;
+    padding: 1rem 1.2rem;
+    border-top: none;
+}
+
+.table p {
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+    color: #22223b;
+}
+
+form {
+    background: #f8fafc;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(67, 97, 238, 0.04);
+    padding: 1rem 1rem 0.5rem 1rem;
+    margin-bottom: 0;
+    animation: fadeInUp 1.2s;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #4361ee;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.form-control, .form-control:focus {
+    border-radius: 10px;
+    border: 2px solid #e0e7ff;
+    background: #fff;
+    box-shadow: none;
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    border-color: #3a86ff;
+    background: #f8fafc;
+}
+
+button[type="button"] {
+    background: linear-gradient(90deg, #3a86ff 0%, #4361ee 100%);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 22px;
+    transition: transform 0.12s, box-shadow 0.12s, background 0.2s;
+    box-shadow: 0 2px 8px rgba(67, 97, 238, 0.08);
+    margin-top: 0.3rem;
+}
+
+button[type="button"]:hover, button[type="button"]:focus {
+    background: linear-gradient(90deg, #4361ee 0%, #3a86ff 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 16px rgba(67, 97, 238, 0.18);
+}
+
+@media (max-width: 900px) {
+    .container {
+        margin-top: 20px;
+        padding: 0 0.5rem;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .table {
+        font-size: 0.95rem;
+    }
+    .table td, .table th {
+        padding: 0.7rem 0.5rem;
+    }
+    form {
+        padding: 0.7rem 0.3rem 0.3rem 0.3rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

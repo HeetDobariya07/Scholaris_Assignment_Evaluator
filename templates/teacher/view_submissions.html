@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submissions for {{ assignment.title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/submissions.css') }}">
+    <style>
+        body { padding-top: 60px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="/teacher">Teacher Dashboard</a>
+        <a class="btn btn-outline-light" href="/">Go to Home</a>
+    </nav>
+
+    <div class="container">
+        <h1>Submissions for {{ assignment.title }}</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Submission ID</th>
+                    <th>Student ID</th>
+                    <th>Questions</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for submission in submissions %}
+                    <tr>
+                        <td>{{ submission.submission_id }}</td>
+                        <td>{{ submission.student_id }}</td>
+                        <td>
+                            {% set questions = submission.questions.split('|') %}
+                            {% for question in questions %}
+                                <p>{{ loop.index }}. {{ question }}</p>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <form id="evaluateForm_{{ submission.submission_id }}" method="POST" 
+                                  action="{{ url_for('evaluate_submission', submission_id=submission.submission_id) }}">
+                                <div class="form-group">
+                                    <label for="score">Score:</label>
+                                    <input type="number" class="form-control" id="score" name="score" required>
+                                </div>
+                                <button type="button" class="btn btn-primary" 
+                                        onclick="submitEvaluation('{{ submission.submission_id }}')">Evaluate</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function submitEvaluation(submissionId) {
+            var form = document.getElementById('evaluateForm_' + submissionId);
+            var formData = new FormData(form);
+            var evaluationData = {};
+            formData.forEach((value, key) => {
+                evaluationData[key] = value;
+            });
+
+            fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(evaluationData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Evaluation submitted successfully!');
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while submitting the evaluation.');
+            });
+        }
+    </script>
+</body>
+</html>
+
+
