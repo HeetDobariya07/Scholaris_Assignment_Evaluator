@@ -69,7 +69,7 @@ Uploaded assignment files are stored in the `/data/assignments/` directory.
 
 ## 📁 Project Structure
 ```
-Assignment Evaluator/
+Scholaris_Assignment_Evaluator/
 ├── pycache/
 ├── data/
 │ ├── assignments/
